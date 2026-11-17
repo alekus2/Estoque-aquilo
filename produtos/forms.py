@@ -11,6 +11,7 @@ class ProdutoForm(forms.ModelForm):
             'codigo',
             'descricao',
             'preco',
+            'categoria',
             'quantidade',
             'estoque_minimo',
             'ativo',

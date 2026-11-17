@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from .models import Produto
+from .models import Produto, Categoria
 
 
 @admin.register(Produto)
@@ -11,6 +11,7 @@ class ProdutoAdmin(admin.ModelAdmin):
         'nome',
         'codigo',
         'preco',
+        'categoria',
         'quantidade',
         'estoque_minimo',
         'ativo',
@@ -49,3 +50,8 @@ class ProdutoAdmin(admin.ModelAdmin):
     def exibir_estoque_baixo(self, obj):
         return 'Sim' if obj.estoque_baixo else 'Não'
     
+@admin.register(Categoria)
+class CategoriaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nome')
+    search_fields = ('nome',)
+    ordering = ('nome',)

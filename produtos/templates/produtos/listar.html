@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Produtos{% endblock %}
+
+{% block content %}
+
+    <h1>Produtos cadastrados</h1>
+
+    <a href="{% url 'cadastrar_produto' %}">
+        Cadastrar novo produto
+    </a>
+    <form method="GET">
+        <label for="categoria">Filtrar por categoria:</label>
+
+        <select name="categoria" id="categoria">
+            <option value="">Todas as categorias</option>
+
+            {% for categoria in categorias %}
+                <option value="{{ categoria.id }}">
+                    {{ categoria.nome }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Filtrar</button>
+    </form>
+    {% for produto in produtos %}
+
+        <div>
+            <h2>{{ produto.nome }}</h2>
+            <p>Código: {{ produto.codigo }}</p>
+            <p>Preço: R$ {{ produto.preco }}</p>
+            <p>Quantidade: {{ produto.quantidade }}</p>
+            <p>
+                <strong>Categoria:</strong>
+                {% if produto.categoria %}
+                    {{ produto.categoria.nome }}
+                {% else %}
+                    Sem categoria
+                {% endif %}
+            </p>
+        </div>
+
+        <a href="{% url 'editar_produto' produto.id %}">
+            Editar
+        </a>
+        <a href="{% url 'excluir_produto' produto.id %}">
+            Excluir
+        </a>
+    {% empty %}
+
+        <p>Nenhum produto cadastrado.</p>
+
+    {% endfor %}
+
+
+{% endblock %}
