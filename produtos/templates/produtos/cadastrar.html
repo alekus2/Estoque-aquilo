@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Cadastrar produto{% endblock %}
+
+{% block content %}
+
+    <h1>Cadastrar produto</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ formulario.as_p }}
+
+        <button type="submit">Cadastrar produto</button>
+    </form>
+
+{% endblock %}

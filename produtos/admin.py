@@ -14,6 +14,7 @@ class ProdutoAdmin(admin.ModelAdmin):
         'quantidade',
         'estoque_minimo',
         'ativo',
+        'exibir_estoque_baixo'
     )
 
     list_display_links = ('id', 'nome')
@@ -43,3 +44,8 @@ class ProdutoAdmin(admin.ModelAdmin):
     )
 
     readonly_fields = ('criado_em', 'atualizado_em')
+    
+    @admin.display(description='Estoque baixo')
+    def exibir_estoque_baixo(self, obj):
+        return 'Sim' if obj.estoque_baixo else 'Não'
+    
