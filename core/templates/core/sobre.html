@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre | Estoque Aquilo</title>
-</head>
-<body>
-    <h1>Sobre o Estoque Aquilo</h1>
-    <a href="{% url 'home' %}">Voltar para o início</a>
+{% extends 'core/base.html' %}
+
+{% block title %}Sobre | Estoque-aquilo{% endblock %}
+
+{% block content %}
+
+<section class="about">
+    <h2>Sobre o projeto</h2>
+
     <p>
-        O Estoque Aquilo serve para facilitar o
-        gerenciamento e controle de estoque.
+        O Estoque-aquilo é um sistema desenvolvido
+        com Django para gerenciamento e controle de estoque.
     </p>
+
     <p>
-        Nosso objetivo é organizar produtos, acompanhar 
-        movimentações e fornecer informações importantes
-        para a administração do estoque.
+        Seu objetivo é facilitar o cadastro de produtos,
+        o acompanhamento das quantidades disponíveis
+        e o controle das movimentações.
     </p>
-</body>
-</html>
+</section>
+
+{% endblock %}
