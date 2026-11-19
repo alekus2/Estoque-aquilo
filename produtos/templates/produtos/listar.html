@@ -22,6 +22,44 @@
             {% endfor %}
         </select>
 
+        <label for="busca">Buscar por produto: </label>
+        <input type="text"
+               name="busca"
+               id="busca"
+               placeholder="Digite o nome ou o codigo"
+               value="{{ busca }}"
+        >
+
+        <label for="ordenacao">Ordenar por:</label>
+
+        <select name="ordenacao" id="ordenacao">
+
+            <option value="nome" {% if ordenacao == 'nome' %}selected{% endif %}>
+                Nome: A até Z
+            </option>
+
+            <option value="-nome" {% if ordenacao == '-nome' %}selected{% endif %}>
+                Nome: Z até A
+            </option>
+
+            <option value="preco" {% if ordenacao == 'preco' %}selected{% endif %}>
+                Menor preço
+            </option>
+
+            <option value="-preco" {% if ordenacao == '-preco' %}selected{% endif %}>
+                Maior preço
+            </option>
+
+            <option value="quantidade" {% if ordenacao == 'quantidade' %}selected{% endif %}>
+                Menor estoque
+            </option>
+
+            <option value="-quantidade" {% if ordenacao == '-quantidade' %}selected{% endif %}>
+                Maior estoque
+            </option>
+
+        </select>
+
         <button type="submit">Filtrar</button>
     </form>
     {% for produto in produtos %}
@@ -52,6 +90,22 @@
         <p>Nenhum produto cadastrado.</p>
 
     {% endfor %}
+
+    <div class="paginacao">
+        {% if produtos.has_previous %}
+            <a href="?pagina={{ produtos.previous_page_number }}&busca={{ busca }}&categoria={{ categoria_selecionada|default_if_none:'' }}&ordenacao={{ ordenacao }}">
+                Anterior
+            </a>
+        {% endif %}
+        <span>
+            Página {{ produtos.number }} de {{ produtos.paginator.num_pages }}
+        </span>
+        {% if produtos.has_next %}
+            <a href="?pagina={{ produtos.next_page_number }}&busca={{ busca }}&categoria={{ categoria_selecionada|default_if_none:'' }}&ordenacao={{ ordenacao }}">
+                Próxima
+            </a>
+        {% endif %}
+    </div>
 
 
 {% endblock %}
